@@ -40,15 +40,46 @@ uv --version
 
 ## Setup
 
+**1. Make your own copy on GitHub.** On this repo's GitHub page, click **Use this template → Create a new repository**, give it a name, and click **Create repository**. You now have your own repo that you can push to.
+
+**2. Clone your copy and install.**
+
 ```bash
-git clone <url-of-this-repo>
-cd ds-starter
+git clone <url-of-your-repo>
+cd <your-repo-name>
 uv sync
 ```
 
 `uv sync` creates a virtual environment in `.venv/` and installs everything listed in `pyproject.toml`. Run it again whenever you pull new changes.
 
-✏️ *Replace with: the same three commands with your repo's URL and folder name, plus any extra setup steps.*
+**3. Save your work back to GitHub** whenever you finish a piece of work:
+
+```bash
+git add .
+git commit -m "Describe what you changed"
+git push
+```
+
+Git will ask you to sign in to GitHub the first time you push.
+
+<details>
+<summary>No "Use this template" button?</summary>
+
+Create a new, empty repository on GitHub (do not tick "Add a README"), then run:
+
+```bash
+git clone <url-of-this-repo> <your-repo-name>
+cd <your-repo-name>
+git remote set-url origin <url-of-your-new-repo>
+git push -u origin main
+uv sync
+```
+
+`git remote set-url` points your local copy at your new repo instead of this one.
+
+</details>
+
+✏️ *Replace with: just the clone and `uv sync` commands with your repo's URL and folder name, plus any extra setup steps.*
 
 ## Project structure
 
