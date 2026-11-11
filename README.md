@@ -79,6 +79,10 @@ uv sync
 
 </details>
 
+**4. Excluding file from git / GitHub**
+
+Any files you don't want tracked by git (and uploaded to GitHub) can be excluded by listing them in the .gitignore file. This is standard practice for large or sensitive data.
+
 ✏️ *Replace with: just the clone and `uv sync` commands with your repo's URL and folder name, plus any extra setup steps.*
 
 ## Project structure
