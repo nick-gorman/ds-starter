@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environment (uv recreates this from uv.lock)
+.venv
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Pipeline outputs (recreated by running the pipeline)
+data/processed/*
+!data/processed/.gitkeep
+
+# OS / editor files
+.DS_Store
+.vscode/
+.idea/
