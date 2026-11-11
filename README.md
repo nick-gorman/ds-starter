@@ -1,6 +1,6 @@
 # ds-starter
 
-A simple starter project for Python data science. It uses [uv](https://docs.astral.sh/uv/) to manage Python and packages, and git to track changes. Nothing else.
+A simple starter project for Python data science. It uses [uv](https://docs.astral.sh/uv/) to manage Python and packages, git to track changes, and pytest to test the code. Nothing else.
 
 > **This README is a template.** Every section below is one your own project's README should have. When you start your analysis, keep the headings and replace the contents with your own. Each section ends with a ✏️ note telling you what to write.
 
@@ -97,6 +97,9 @@ ds-starter/
 │   ├── config.py            # File paths, kept in one place.
 │   ├── helpers.py           # Small functions that each do one job.
 │   └── pipeline.py          # The orchestrator that calls the helpers in order.
+├── tests/                   # Checks that the code in src/ does what it should.
+│   ├── test_helpers.py
+│   └── test_pipeline.py
 ├── pyproject.toml           # Project settings and the list of packages.
 ├── uv.lock                  # Exact package versions. Created by uv; do not edit.
 └── README.md
@@ -188,6 +191,41 @@ Only the script touches files. The orchestrator and helpers just take data in an
 
 ✏️ *Replace with: the steps of your own analysis, in order, and which file each step lives in.*
 
+## Tests
+
+A test is a small function that runs your code on an example and checks the answer. Tests catch mistakes early, and tell you straight away if a later change breaks something that used to work. This project uses [pytest](https://docs.pytest.org/).
+
+Run every test:
+
+```bash
+uv run pytest
+```
+
+A dot means a test passed and an `F` means it failed. When a test fails, pytest shows the line that failed and the values it compared.
+
+Other useful ways to run tests:
+
+```bash
+uv run pytest -v                        # show the name of each test
+uv run pytest tests/test_helpers.py     # run one file
+uv run pytest -k revenue                # run tests with "revenue" in the name
+```
+
+A test follows three steps: set up some data, run your function, check the result with `assert`.
+
+```python
+def test_add_revenue_multiplies_units_by_unit_price():
+    df = pd.DataFrame({"units": [2, 4], "unit_price": [3.0, 4.5]})
+
+    result = add_revenue(df)
+
+    assert result["revenue"].tolist() == [6.0, 18.0]
+```
+
+To add your own, follow two naming rules so pytest can find them: files are named `tests/test_*.py` and functions are named `test_*`. Use tiny DataFrames you type out by hand, so you can work out the right answer yourself. Aim for at least one test for each helper function.
+
+✏️ *Replace with: the command to run your tests and a sentence on what they cover.*
+
 ## Outputs
 
 | File                               | Description                                             |
@@ -208,6 +246,7 @@ Files in `data/processed/` are not tracked by git, because anyone can recreate t
 | Run a script                       | `uv run scripts/run_pipeline.py`             |
 | Open the REPL                      | `uv run python`                              |
 | Open JupyterLab                    | `uv run jupyter lab`                         |
+| Run the tests                      | `uv run pytest`                              |
 | See what you have changed          | `git status`                                 |
 | Save your changes                  | `git add .` then `git commit -m "message"`   |
 | Send your changes to GitHub        | `git push`                                   |
@@ -220,10 +259,10 @@ Always use `uv add` instead of `pip install`. It records the package in `pyproje
 
 1. Rename the folder `src/ds_starter/` to your project's name. Use lower case and underscores, for example `src/housing_analysis/`.
 2. In `pyproject.toml`, change `name` to match, using hyphens instead of underscores (`housing-analysis`), and update `description`.
-3. Change `ds_starter` to your new name in the `import` lines in `scripts/`, `notebooks/` and `src/`.
+3. Change `ds_starter` to your new name in the `import` lines in `scripts/`, `notebooks/`, `tests/` and `src/`.
 4. Run `uv sync`.
 5. Put your data in `data/raw/` and delete `sales.csv`.
-6. Replace the example helpers, pipeline, script and notebook with your own.
+6. Replace the example helpers, pipeline, script, notebook and tests with your own.
 7. Rewrite each section of this README for your project, then delete this section and the note at the top.
 
 ✏️ *Delete this section when you are done.*
